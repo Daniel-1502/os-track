@@ -1,0 +1,105 @@
+/* Variaveis de cor e de espacamento.
+   Este e o ponto de partida da identidade visual.
+   A partir da aula 2 voce troca estes valores pelas cores da sua assistencia. */
+:root {
+  --cor-fundo: #f4f5f7;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1f2430;
+  --cor-texto-suave: #5b6472;
+  --cor-borda: #dfe3e8;
+  --cor-destaque: #2f5d8a;
+
+  --espaco-pequeno: 0.5rem;
+  --espaco-medio: 1.5rem;
+  --espaco-grande: 2.5rem;
+
+  --largura-maxima: 40rem;
+}
+
+/* Reset basico.
+   Faz com que padding e border sejam contados dentro da largura do elemento
+   e zera as margens e o preenchimento padrao do navegador. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Base da pagina.
+   Tipografia legivel, cores neutras e altura minima de tela cheia,
+   com o conteudo organizado em coluna para o rodape ficar embaixo. */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-medio);
+  padding: var(--espaco-grande) var(--espaco-medio);
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--cor-texto);
+  background-color: var(--cor-fundo);
+}
+
+/* Cabecalho.
+   Titulo principal e subtitulo explicativo, centralizados. */
+.cabecalho {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  text-align: center;
+}
+
+.cabecalho__titulo {
+  margin: 0 0 var(--espaco-pequeno);
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--cor-destaque);
+}
+
+.cabecalho__subtitulo {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--cor-texto-suave);
+}
+
+/* Conteudo principal.
+   Cartao branco simples, com borda discreta, para destacar o texto do fundo. */
+.conteudo {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  padding: var(--espaco-medio);
+
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+}
+
+.conteudo__texto {
+  margin: 0;
+  text-align: center;
+  color: var(--cor-texto-suave);
+}
+
+/* Rodape.
+   Texto pequeno e discreto, sem concorrer com o conteudo. */
+.rodape {
+  width: 100%;
+  max-width: var(--largura-maxima);
+  text-align: center;
+
+  font-size: 0.875rem;
+  color: var(--cor-texto-suave);
+}
+
+.rodape p {
+  margin: 0;
+}

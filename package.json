@@ -1,0 +1,16 @@
+{
+  "name": "os-track",
+  "version": "1.0.0",
+  "description": "Template base do sistema OS Track — disciplina de Programacao para Internet",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
