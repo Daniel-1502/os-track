@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel administrativo | OS Track</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!--
+    ESTILO DA AULA 3
+    Esta regra estiliza a mensagem que aparece quando o filtro nao encontra
+    nenhuma ordem. Ela fica aqui dentro do admin.html de proposito, para voce
+    nao precisar mexer no seu style.css e manter a sua identidade da aula 2.
+  -->
+  <style>
+    .aviso-vazio {
+      grid-column: 1 / -1;
+      padding: 32px;
+      text-align: center;
+      color: #6b7280;
+      background-color: #f9fafb;
+      border: 1px dashed #d1d5db;
+      border-radius: 12px;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="cabecalho">
+    <div class="marca">
+      <span class="marca-simbolo">OS</span>
+      <div>
+        <p class="marca-nome">OS Track</p>
+        <p class="marca-slogan">Painel administrativo</p>
+      </div>
+    </div>
+    <nav class="menu">
+      <a href="index.html">Consulta pública</a>
+      <a href="login.html" class="link-sair">Sair</a>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+
+    <!--
+      BARRA DE FILTROS
+      Na aula 2 estes filtros eram apenas visuais, nao filtravam nada.
+      Na aula 3 o filtro de status passa a funcionar de verdade, pelo admin.js.
+      O filtro de tipo e a busca continuam so na interface por enquanto:
+      eles ganham vida na aula 6, quando a listagem vier do banco de dados.
+    -->
+    <section class="bloco">
+      <div class="titulo-secao">
+        <h1>Ordens de serviço</h1>
+        <span class="contador">4 ordens em aberto</span>
+      </div>
+
+      <form class="barra-filtros">
+        <div class="campo">
+          <label for="filtro-status">Status</label>
+          <select id="filtro-status" name="status">
+            <option value="">Todos</option>
+            <option value="recebido">recebido</option>
+            <option value="em-analise">em análise</option>
+            <option value="orcado">orçado</option>
+            <option value="aprovado">aprovado</option>
+            <option value="recusado">recusado</option>
+            <option value="pronto">pronto</option>
+            <option value="entregue">entregue</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="filtro-tipo">Tipo de produto</label>
+          <select id="filtro-tipo" name="tipo">
+            <option value="">Todos</option>
+            <option value="notebook">notebook</option>
+            <option value="desktop">desktop</option>
+            <option value="celular">celular</option>
+            <option value="impressora">impressora</option>
+            <option value="outro">outro</option>
+          </select>
+        </div>
+
+        <div class="campo campo-cresce">
+          <label for="filtro-busca">Buscar</label>
+          <input
+            type="search"
+            id="filtro-busca"
+            name="busca"
+            placeholder="Código, cliente ou modelo">
+        </div>
+
+        <button type="submit" class="botao botao-principal">Filtrar</button>
+      </form>
+    </section>
+
+    <!--
+      GRADE DE ORDENS
+
+      Na aula 2 esta grade vinha cheia, com quatro cartoes escritos a mao aqui
+      dentro. Na aula 3 ela comeca VAZIA: quem desenha os cartoes agora e o
+      JavaScript, no arquivo js/admin.js, a partir de um array. Ao abrir a
+      pagina, o admin.js preenche esta div sozinho.
+    -->
+    <section class="bloco">
+      <div class="grade-ordens">
+        <!-- vazio de proposito: o admin.js preenche esta div -->
+      </div>
+    </section>
+
+    <!--
+      FORMULARIO DE ABERTURA DE ORDEM
+      Este formulario ja foi completado na aula 2. Nada muda nele hoje.
+      Ele passa a enviar dados de verdade a partir da aula 4.
+    -->
+    <section class="bloco">
+      <h2>Abrir nova ordem</h2>
+      <p class="texto-apoio">
+        Os campos abaixo seguem exatamente o modelo de dados do projeto. O atributo name
+        de cada campo é o nome que vai chegar no servidor a partir da aula 4, então ele
+        precisa bater com o modelo.
+      </p>
+
+      <form class="form-ordem">
+
+        <div class="campo">
+          <label for="cliente-nome">Nome do cliente</label>
+          <input type="text" id="cliente-nome" name="cliente.nome" required>
+        </div>
+
+        <div class="campo">
+          <label for="cliente-telefone">Telefone</label>
+          <input type="tel" id="cliente-telefone" name="cliente.telefone" required>
+        </div>
+
+        <div class="campo">
+          <label for="cliente-email">E-mail</label>
+          <input type="email" id="cliente-email" name="cliente.email">
+        </div>
+
+        <div class="campo">
+          <label for="produto-tipo">Tipo de produto</label>
+          <select id="produto-tipo" name="produto.tipo" required>
+            <option value="">Selecione</option>
+            <option value="notebook">notebook</option>
+            <option value="desktop">desktop</option>
+            <option value="celular">celular</option>
+            <option value="impressora">impressora</option>
+            <option value="outro">outro</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="produto-marca">Marca</label>
+          <input type="text" id="produto-marca" name="produto.marca" required>
+        </div>
+
+        <div class="campo">
+          <label for="produto-modelo">Modelo</label>
+          <input type="text" id="produto-modelo" name="produto.modelo" required>
+        </div>
+
+        <div class="campo campo-largo">
+          <label for="defeito-relatado">Defeito relatado</label>
+          <textarea id="defeito-relatado" name="defeitoRelatado" rows="3" required></textarea>
+        </div>
+
+        <div class="campo campo-largo">
+          <label>Acessórios recebidos</label>
+          <div class="grupo-opcoes">
+            <div class="opcao">
+              <input type="checkbox" id="acessorio-carregador" name="acessorios" value="carregador">
+              <label for="acessorio-carregador">Carregador</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="acessorio-cabo" name="acessorios" value="cabo">
+              <label for="acessorio-cabo">Cabo</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="acessorio-capa" name="acessorios" value="capa">
+              <label for="acessorio-capa">Capa</label>
+            </div>
+            <div class="opcao">
+              <input type="checkbox" id="acessorio-bateria" name="acessorios" value="bateria">
+              <label for="acessorio-bateria">Bateria</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="campo campo-largo">
+          <label>Prioridade</label>
+          <div class="grupo-opcoes">
+            <div class="opcao">
+              <input type="radio" id="prioridade-normal" name="prioridade" value="normal" checked>
+              <label for="prioridade-normal">Normal</label>
+            </div>
+            <div class="opcao">
+              <input type="radio" id="prioridade-urgente" name="prioridade" value="urgente">
+              <label for="prioridade-urgente">Urgente</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="data-previsao">Previsão de entrega</label>
+          <input type="date" id="data-previsao" name="dataPrevisao">
+        </div>
+
+        <div class="campo">
+          <label for="valor-orcamento">Valor do orçamento</label>
+          <input type="number" id="valor-orcamento" name="valorOrcamento" step="0.01" min="0">
+        </div>
+
+        <div class="form-acoes">
+          <button type="submit" class="botao botao-principal">Abrir ordem</button>
+        </div>
+
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>OS Track, sistema de ordens de serviço. Projeto da disciplina Programação para Internet.</p>
+  </footer>
+
+  <!--
+    LIGACAO DO JAVASCRIPT
+    Esta linha liga o arquivo js/admin.js a esta pagina. Ela fica no fim, pouco
+    antes do fecha body, para que o navegador leia todo o HTML acima antes de
+    rodar o script. Assim o admin.js encontra a grade e o formulario prontos.
+  -->
+  <script src="js/admin.js"></script>
+
+</body>
+</html>
